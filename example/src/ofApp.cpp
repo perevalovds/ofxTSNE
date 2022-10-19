@@ -111,20 +111,21 @@ void ofApp::setup(){
     int dims = 2;
     float perplexity = 40;
     float theta = 0.2;
-    bool normalize = true;
+    // bool normalize = true;
     
     // finally let's run ofxTSNE! this may take a while depending on your
     // data, and it will return a set of embedded points, structured as
     // a vector<vector<float> > where the inner vector contains (dims) elements.
     // We will unpack these points and assign them back to our testPoints dataset.
 
-    tsnePoints = tsne.run(data, dims, perplexity, theta, normalize, runManually);
+    tsnePoints = tsne.run(data, dims, perplexity, theta, runManually);
     
     // if we didn't run manually, we can collect the points immediately
     if (!runManually) {
         for (int i=0; i<testPoints.size(); i++) {
             testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1]);
         }
+        // TODO apply ofxTSNE::normalize
     }
 }
 
@@ -136,6 +137,7 @@ void ofApp::update(){
         tsnePoints = tsne.iterate();
         for (int i=0; i<testPoints.size(); i++) {
             testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1]);
+            // TODO apply ofxTSNE::normalize
         }
     }
 }

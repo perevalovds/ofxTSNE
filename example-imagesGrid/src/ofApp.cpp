@@ -84,6 +84,8 @@ void ofApp::setup(){
     // run t-SNE and load image points to imagePoints
     ofLog() << "Run t-SNE on images";
     tsneVecs = tsne.run(encodings, 2, perplexity, theta, true);
+    // TODO apply ofxTSNE::normalize
+
     
     // solve assignment grid
     vector<ofVec2f> tsnePoints; // convert vector<double> to ofVec2f

@@ -29,7 +29,8 @@ void ofApp::setup(){
     
     // run t-SNE and load image points to imagePoints
     ofLog() << "Run t-SNE on images";
-    imagePoints = tsne.run(encodings, 2, 25, 0.1, true);
+    imagePoints = tsne.run(encodings, 2, 25, 0.1);
+    // TODO apply ofxTSNE::normalize
     
     // make the images the same size
     for (int i=0; i<images.size(); i++) {
